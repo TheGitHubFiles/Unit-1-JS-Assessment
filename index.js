@@ -29,8 +29,8 @@ function getName(character) {
  * Sample data expected output: 5
  */
 function getFilmCount(character) {
+  return character['films'].length;
   // TODO: Add your code inside the functions (others below).
-
 }
 
 /**
@@ -42,8 +42,12 @@ function getFilmCount(character) {
  * If length is 0. Return 'none'
 */
 function getSecondStarshipName(character) {
-  // TODO: Add your code here.
+  if(character.starships.length < 1){
+    return 'none'
+  }
+  return character.starships[1].name
 }
+console.log(getSecondStarshipName('Luke Skywalker'));
 
 /**
  * ### Challenge `getSummary`
@@ -55,9 +59,9 @@ function getSecondStarshipName(character) {
  *    Result: `Luke Skywalker, 172cm, 77kg. Featured in 5 films.`
  */
 function getSummary(character) {
-  // TODO: Add your code here.
-}
-
+  return `${character.name}, ${character.height}cm, ${character.mass}kg. Featured in ${character.films.length} films.`;
+};
+console.log(getSummary('Luke Skywalker'))
 /**
  * ### Challenge `getVehiclesCostInCreditsSumTotal`
  * MVP Challenge 🤓
@@ -66,10 +70,17 @@ function getSummary(character) {
  * Sum the total cost in credits for all vehicles defined on the input character.
  * Sample data expected output: 8000
 */
-function getVehiclesCostInCreditsSumTotal(character) {
-  // TODO: Add your code here.
-}
 
+function getVehiclesCostInCreditsSumTotal(character) {
+  let totalcost = 0
+    for (let i = 0; i < character.vehicles.length; i++) {
+      totalcost+= character.vehicles[i].cost_in_credits
+  };
+  return totalcost;
+}''
+  
+
+console.log(getVehiclesCostInCreditsSumTotal('Luke Skywalker'));
 /**
  * ### Challenge `getStarshipPassengerAndCrewSumTotal`
  * MVP Challenge 🤓
@@ -81,9 +92,13 @@ function getVehiclesCostInCreditsSumTotal(character) {
  * Sample data expected output: 27
 */
 function getStarshipPassengerAndCrewSumTotal(character) {
-  // TODO: Add your code here.
+   let total = 0
+  for (let i = 0; i < character.starships.length; i++) {
+    total += Number(character.starships[i].crew) + Number(character.starships[i].passengers) 
+  }
+  return total;
 }
-
+console.log(getStarshipPassengerAndCrewSumTotal('Luke Skywalker'))
 /**
  * ### Challenge `getNthFilm`
  * MVP Challenge 🤓
@@ -98,9 +113,15 @@ function getStarshipPassengerAndCrewSumTotal(character) {
  * Given film #7, expected error: `There are only 3 Star Wars movies. Flan fiction excluded.`
 */
 function getNthFilm(character, filmNumber) {
-  // TODO: Add your code here.
-}
 
+  if(filmNumber > 0 && filmNumber < 4){
+    return character.films[filmNumber-1];
+  }
+  else{
+  return 'error: there are only 3 star wars movies . indana jones isnt one'
+  }
+}
+console.log(getNthFilm('Luke Skywalker',1))
 /**
  * ### Challenge `getCargoCapacityTotal`
  * Stretch Goal 💪
